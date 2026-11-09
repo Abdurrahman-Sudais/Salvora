@@ -4,8 +4,8 @@
   "description": "Find the reuse potential before demolition starts.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f5f6f2",
-  "theme_color": "#14231c",
+  "background_color": "#e9e8e2",
+  "theme_color": "#111111",
   "icons": [
     {
       "src": "/icon-192.png",

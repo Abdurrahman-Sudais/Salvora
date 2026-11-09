@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.salvora.com/sitemap.xml
+Sitemap: https://salvora.space/sitemap.xml

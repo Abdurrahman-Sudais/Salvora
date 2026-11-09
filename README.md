@@ -4,27 +4,36 @@
 
 Salvora helps deconstruction teams identify and organise potentially reusable building materials. AI turns site photographs and survey documents into a proposed inventory that surveyors can verify, prioritise, and export for recovery planning.
 
-> Salvora is a proposed startup concept. The team is fictional, pricing is illustrative and the prototype uses fictional data. Named organisation types are prospective customers with no implied affiliation. The domain `www.salvora.com` and email `hello@salvora.com` are placeholders — check availability with a registrar before use.
+> Salvora is a proposed product. Pricing is illustrative and the prototype uses fictional data. Founded by **Adaora Nnamdi** (adaora@salvora.space). Organisation types named on the site are prospective customers with no implied affiliation. Check `salvora.space` with your registrar before launch.
 
-Categories: AI · Construction Technology · Circular Economy
+## Design
 
-## What's here
+A survey drawing set. Blueprint linework on concrete-grey paper with a grid, square corners and heavy borders, Archivo (expanded and condensed) for headings and IBM Plex Mono for annotations, safety orange and hazard yellow for emphasis.
 
-- **Marketing site** (`/`): hero, purpose and stakes (with sourced statistics), problem, solution, how it works, customers, public-sector angle, AI safeguards, principles, founders' letter, vision, pricing, proposed AWS architecture, team, FAQ and an early-access form.
-- **Interactive prototype** (`/app`): a review workspace on fictional candidate items. Switch roles with *Demo as*, open a record to see AI flags with evidence and confidence, assign reviewers, add notes and record decisions (a reason is required). Every change is written to an audit log you can export as CSV. A grounded assistant answers only from the records and refuses decisions that belong to people. Changes persist in `localStorage`.
-- **Legal drafts**: `/privacy` and `/terms` (review drafts; operator details to be confirmed).
+- **Hero** — a floor plan where detection boxes are plotted one by one, with a title block and a CAD-style crosshair that follows the pointer.
+- Every section is a numbered **sheet**; elements are revealed with a pen-plotter sweep.
+- **Catalogue** of salvage lots with status stamps, **duplicates** shown as three photos of one door collapsing into one inventory line, the **process** as a revision schedule, **inspection limits** inside hazard tape with landing stamps, **statistics** on concrete blocks, **fees** as a schedule table, the founder’s **site notes** on a clipboard and the **team** as site passes.
 
-## Team
+## Survey inventory (`/app`)
 
-- **Ikenna Obiora** — Founder/CEO. Pre-demolition surveyor with experience on commercial refurbishment projects.
-- **Toyin Adebanjo** — Co-founder. Circular economy consultant focused on material reuse in construction.
-- **Mustapha Aliyu** — CTO. Computer vision engineer working on detection and segmentation.
+A fictional office strip-out survey. Room drawings show candidate items outlined; select one to see the suggested category with model probabilities, the proposed and scheduled quantities, the flag with evidence and any duplicate-photo group. Surveyors must resolve duplicates, then confirm category, quantity, dimensions, condition and removal access (with an observation) — or reject the candidate. Planners can refer items for qualified inspection. Only confirmed items enter the inventory, ranked from confirmed inputs, and export as CSV with inspection requirements attached. Roles: Lead Surveyor, Surveyor, Recovery Planner, Client Viewer.
 
-## Sources for the statistics
+Every decision in the prototype is made by a person, needs a reason, and is written to an exportable log. Changes persist in `localStorage`. Motion is skipped when the visitor prefers reduced motion, and all content is server-rendered and readable without JavaScript.
 
-- 600m tons — Construction and demolition debris generated in the United States in 2018. ([US EPA](https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/construction-and-demolition-material-specific))
-- 38% — Share of total EU waste generation from construction in 2022. ([Statista, citing Eurostat](https://www.statista.com/statistics/1340946/european-union-waste-generation-share-by-source))
-- >35% — The European Commission’s figure for construction’s share of EU waste, confirmed by fact-checkers. ([EUFactcheck](https://eufactcheck.eu/factcheck/true-construction-is-responsible-for-producing-35-of-all-waste-in-the-eu/))
+## Structure
+
+```
+src/content.js   site facts, team, sourced statistics
+src/data.js      fictional project, rooms, candidate items, roles
+src/engine.js    merge, confirm, reject, refer, priority, export
+src/App.jsx      marketing pages
+src/Scene.jsx    room drawings used in the survey inventory
+src/Survey.jsx   the survey inventory
+src/motion.js    plotted detections, plotter reveals, stamps, crosshair
+src/styles.css   all styling
+scripts/prerender.mjs  static HTML for every route
+tests/                 node --test suites
+```
 
 ## Develop
 
@@ -34,30 +43,11 @@ npm run dev
 ```
 
 ```bash
-npm run build   # Vite build, server render, and static prerender of /, /app, /privacy, /terms and 404.html
-npm test        # Engine and content tests (node --test)
+npm run build   # Vite build, server render, static prerender of /, /app, /privacy, /terms and 404.html
+npm test        # rules and content tests (node --test)
 npm run preview
 ```
 
-The build output in `dist/` is fully static. `public/_headers` and `public/_redirects` cover Netlify/Cloudflare Pages; `vercel.json` covers Vercel.
+The output in `dist/` is fully static. `public/_headers` and `public/_redirects` cover Netlify/Cloudflare Pages; `vercel.json` covers Vercel.
 
-### Early-access form
-
-Without configuration the form saves the request in the browser and offers a pre-filled email to hello@salvora.com. To send submissions to HubSpot, set `VITE_HUBSPOT_PORTAL_ID` and `VITE_HUBSPOT_FORM_GUID` at build time, and update the privacy notice first.
-
-### Motion
-
-Scroll reveals, word-by-word manifesto lighting, count-up statistics, timeline and step lines, card tilt and magnetic buttons live in `src/motion.js`. Content is server-rendered and fully visible without JavaScript; motion is skipped when the visitor prefers reduced motion.
-
-## Structure
-
-```
-src/content.js        all site copy (edit here)
-src/seed.js           fictional prototype records
-src/theme.css         colours and fonts
-src/App.jsx           marketing pages
-src/Purpose.jsx       purpose, stakes, principles, letter, vision
-src/app/engine.js     prototype rules (permissions, decisions, audit, assistant)
-src/app/Prototype.jsx prototype UI
-scripts/prerender.mjs static HTML for every route
-```
+The early-access form keeps requests in the browser and opens a pre-filled email until a form service is connected. To send submissions to HubSpot, set `VITE_HUBSPOT_PORTAL_ID` and `VITE_HUBSPOT_FORM_GUID` at build time and update the privacy notice first.
