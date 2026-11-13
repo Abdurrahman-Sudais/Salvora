@@ -131,9 +131,9 @@ const PROCESS = [
 function Process() {
   return (
     <section className="sheet" id="process" aria-labelledby="proc-title">
-      <div className="sheet-h"><span className="sn">03</span><h2 id="proc-title">The survey, as a revision schedule.</h2></div>
+      <div className="sheet-h"><span className="sn">03</span><h2 id="proc-title">How a survey works with Salvora.</h2></div>
       <table className="revs">
-        <thead><tr><th>Rev</th><th>Stage</th><th>Description</th><th>By</th></tr></thead>
+        <thead><tr><th>Step</th><th>Stage</th><th>What happens</th><th>Who</th></tr></thead>
         <tbody>{PROCESS.map(([r, t, d], i) => <tr key={r} data-plot><td className="rev">{r}</td><td><b>{t}</b></td><td>{d}</td><td className="by">{i === 1 ? 'Salvora' : i === 4 ? 'Salvora + surveyor' : 'Surveyor'}</td></tr>)}</tbody>
       </table>
     </section>
@@ -174,7 +174,7 @@ const WHO = [['Deconstruction & demolition contractors', 'Plan recovery before s
 function Who() {
   return (
     <section className="sheet" aria-labelledby="who-title">
-      <div className="sheet-h"><span className="sn">06</span><h2 id="who-title">Schedule of users.</h2></div>
+      <div className="sheet-h"><span className="sn">06</span><h2 id="who-title">Who Salvora is for.</h2></div>
       <table className="sched"><thead><tr><th>Customer</th><th>Uses Salvora to</th><th>Outcome</th></tr></thead><tbody>{WHO.map(([a, b, c]) => <tr key={a}><td><b>{a}</b></td><td>{b}</td><td className="o">{c}</td></tr>)}</tbody></table>
       <p className="note">Pre-demolition surveyors, recovery planners, site managers, salvage buyers and sustainability teams. Organisation types are prospective customers; no affiliation is implied.</p>
     </section>
@@ -206,7 +206,7 @@ function Fees() {
 function SiteNotes() {
   return (
     <section className="sheet" aria-labelledby="notes-title">
-      <div className="sheet-h"><span className="sn">08</span><h2 id="notes-title">Site notes — why Salvora exists.</h2></div>
+      <div className="sheet-h"><span className="sn">08</span><h2 id="notes-title">Why Salvora exists.</h2></div>
       <div className="clipboard" data-plot>
         <span className="clip" aria-hidden="true" />
         <p className="cn-h">SITE WALK · LEVEL 3 · 14:20</p>
@@ -223,12 +223,13 @@ function SiteNotes() {
 function Team() {
   return (
     <section className="sheet" id="team" aria-labelledby="team-title">
-      <div className="sheet-h"><span className="sn">09</span><h2 id="team-title">Site passes.</h2></div>
-      <div className="passes">{site.team.map((p) => (
-        <article key={p.name} className="pass" data-plot>
-          <div className="pass-band" aria-hidden="true" />
-          <div className="pass-body"><span className="pass-id" aria-hidden="true">{p.initials}</span><div><p className="pass-role">{p.role}</p><h3>{p.name}</h3></div></div>
-          <p className="pass-bio">{p.bio}</p>
+      <div className="sheet-h"><span className="sn">09</span><h2 id="team-title">The team behind Salvora.</h2></div>
+      <div className="team">{site.team.map((p) => (
+        <article key={p.name} className="member" data-plot>
+          <span className="member-id" aria-hidden="true">{p.initials}</span>
+          <p className="member-role">{p.role === 'Founder/CEO' ? 'Founder & CEO' : p.role}</p>
+          <h3>{p.name}</h3>
+          <p className="member-bio">{p.bio}</p>
         </article>
       ))}</div>
       <p className="note">Contact: <a href={`mailto:${site.email}`}>{site.email}</a></p>
@@ -241,7 +242,7 @@ const SYS = [['S3', 'Site photos & plans'], ['SageMaker', 'Detect · segment · 
 function System() {
   return (
     <section className="sheet" aria-labelledby="sys-title">
-      <div className="sheet-h"><span className="sn">10</span><h2 id="sys-title">System diagram (proposed, AWS).</h2></div>
+      <div className="sheet-h"><span className="sn">10</span><h2 id="sys-title">Proposed architecture on AWS.</h2></div>
       <ol className="sys">{SYS.map(([a, b]) => <li key={a} data-plot><b>{a}</b><span>{b}</span></li>)}</ol>
       <p className="note">Proposed, not deployed. This website and the survey inventory run in your browser on fictional data.</p>
     </section>
@@ -258,7 +259,7 @@ const FAQ = [
 function Faq() {
   return (
     <section className="sheet" aria-labelledby="faq-title">
-      <div className="sheet-h"><span className="sn">11</span><h2 id="faq-title">Clarifications.</h2></div>
+      <div className="sheet-h"><span className="sn">11</span><h2 id="faq-title">Frequently asked questions.</h2></div>
       <ol className="clauses">{FAQ.map(([q, a], i) => <li key={q}><details><summary><span>11.{i + 1}</span>{q}</summary><p>{a}</p></details></li>)}</ol>
     </section>
   );
