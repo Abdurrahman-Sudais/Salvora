@@ -287,3 +287,28 @@ p { margin: 0; }
   .sv-role { border-left: 0; padding: 10px 14px; }
   .hazard { border-width: 8px; }
 }
+
+/* AWS sheet, progress and contact */
+.stages { list-style: none; padding: 0; margin: 34px 0 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; border: 2px solid var(--rule); }
+.stages li { padding: 18px 16px; background: #fff; border-right: 2px solid var(--rule); }
+.stages li:last-child { border-right: 0; }
+.stage-n { font: 700 11px var(--mono); letter-spacing: .1em; color: var(--orange); }
+.stages h3 { margin-top: 8px; font-size: 20px; text-transform: uppercase; font-stretch: 112%; }
+.svcs { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+.svcs span { font: 600 11px var(--mono); border: 1.5px solid var(--rule); padding: 3px 7px; background: var(--concrete); }
+.stages li > p:last-child { font-size: 14.5px; color: #2c2b28; }
+.across { margin-top: 18px; border: 2px dashed var(--rule); padding: 16px; }
+.across ul { list-style: none; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; font-size: 14.5px; }
+.sub { margin-top: 36px; font-size: 22px; text-transform: uppercase; font-stretch: 112%; }
+.sched.svc td:first-child { width: 28%; }
+.sched.svc b { font-size: 15px; }
+.progress { margin-top: 14px; font-size: 14.5px; }
+.progress td:nth-child(-n+2) { font: 700 12px var(--mono); white-space: nowrap; }
+.progress b { display: block; font-size: 15px; text-transform: none; font-stretch: 100%; }
+.progress span { color: var(--muted); }
+.progress tr.next td { background: #fff4c2; }
+.contact-list { margin-top: 24px; display: grid; gap: 12px; }
+.contact-list dt { font: 700 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.contact-list dd { margin: 2px 0 0; font-size: 20px; }
+@media (max-width: 1100px) { .stages { grid-template-columns: minmax(0, 1fr); } .stages li { border-right: 0; border-bottom: 2px solid var(--rule); } .stages li:last-child { border-bottom: 0; } .across ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .across ul { grid-template-columns: minmax(0, 1fr); } }

@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import site from './content.js';
 import Survey from './Survey.jsx';
 import LeadForm from './LeadForm.jsx';
+import ContactForm from './ContactForm.jsx';
+import {ACROSS, SERVICES, STAGES} from './aws.js';
 
 function Mark({size = 30}) {
   return (
@@ -11,7 +13,7 @@ function Mark({size = 30}) {
 
 function Header() {
   const [open, setOpen] = useState(false);
-  const nav = [['01 Catalogue', '/#catalogue'], ['02 Duplicates', '/#duplicates'], ['03 Process', '/#process'], ['04 Inspection', '/#inspection'], ['05 Fees', '/#fees'], ['06 Team', '/#team']];
+  const nav = [['01 Catalogue', '/#catalogue'], ['02 Process', '/#process'], ['03 Technology', '/#technology'], ['04 Fees', '/#fees'], ['05 Team', '/#team'], ['06 Contact', '/#contact']];
   return (
     <header className="tb">
       <a href="/" className="tb-brand" aria-label="Salvora home"><Mark /><span>SALVORA</span></a>
@@ -237,13 +239,17 @@ function Team() {
   );
 }
 
-const SYS = [['S3', 'Site photos & plans'], ['SageMaker', 'Detect · segment · classify'], ['Textract', 'Survey & schedule extraction'], ['PostgreSQL', 'Inventory & review records'], ['Bedrock', 'Evidence-linked summaries']];
-
 function System() {
   return (
-    <section className="sheet" aria-labelledby="sys-title">
-      <div className="sheet-h"><span className="sn">10</span><h2 id="sys-title">Proposed architecture on AWS.</h2></div>
-      <ol className="sys">{SYS.map(([a, b]) => <li key={a} data-plot><b>{a}</b><span>{b}</span></li>)}</ol>
+    <section className="sheet" id="technology" aria-labelledby="sys-title">
+      <div className="sheet-h"><span className="sn">10</span><h2 id="sys-title">How we use Amazon Web Services.</h2></div>
+      <p className="sheet-intro">Salvora’s work is image- and document-heavy: hundreds of site photographs and survey pages per building, each of which has to stay traceable to the quantities a contractor prices. The platform is designed on AWS so that storage, vision models, document extraction and model access run as managed services, and each customer’s projects stay isolated as they grow from one pilot building to a portfolio.</p>
+      <ol className="stages">{STAGES.map(([n, t, svcs, d]) => (
+        <li key={n} data-plot><span className="stage-n">STAGE {n}</span><h3>{t}</h3><p className="svcs">{svcs.map((x) => <span key={x}>{x}</span>)}</p><p>{d}</p></li>
+      ))}</ol>
+      <div className="across" data-plot><p className="stage-n">ACROSS EVERY STAGE</p><ul>{ACROSS.map(([a, b]) => <li key={a}><b>{a}</b> {b}</li>)}</ul></div>
+      <h3 className="sub">Services and their role in Salvora</h3>
+      <table className="sched svc"><thead><tr><th>Service</th><th>Role</th></tr></thead><tbody>{SERVICES.map(([a, b]) => <tr key={a}><td><b>{a}</b></td><td>{b}</td></tr>)}</tbody></table>
       <p className="note">Proposed, not deployed. This website and the survey inventory run in your browser on fictional data.</p>
     </section>
   );
@@ -271,7 +277,7 @@ function Footer() {
       <table><tbody>
         <tr><td className="ftb-brand" rowSpan="3"><Mark size={44} /> SALVORA</td><td>DRAWING</td><td>{site.tagline}</td></tr>
         <tr><td>CONTACT</td><td><a href={`mailto:${site.email}`}>{site.email}</a></td></tr>
-        <tr><td>SHEETS</td><td><a href="/app">Survey inventory</a> · <a href="/#fees">Fees</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></td></tr>
+        <tr><td>SHEETS</td><td><a href="/app">Survey inventory</a> · <a href="/#fees">Fees</a> · <a href="/#technology">Technology (AWS)</a> · <a href="/#contact">Contact</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></td></tr>
       </tbody></table>
       <p className="note">© 2026 Salvora. Founded by {site.team[0].name}. A proposed product: pricing is illustrative and the survey inventory uses fictional data.</p>
     </footer>
@@ -279,7 +285,7 @@ function Footer() {
 }
 
 function Home() {
-  return (<><Hero /><Catalogue /><Duplicates /><Process /><Inspection /><Tonnage /><Who /><Fees /><SiteNotes /><Team /><System /><Faq /><LeadForm /></>);
+  return (<><Hero /><Catalogue /><Duplicates /><Process /><Inspection /><Tonnage /><Who /><Fees /><SiteNotes /><Team /><System /><Faq /><LeadForm /><ContactForm /></>);
 }
 
 const LEGAL = {

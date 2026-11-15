@@ -50,4 +50,6 @@ npm run preview
 
 The output in `dist/` is fully static. `public/_headers` and `public/_redirects` cover Netlify/Cloudflare Pages; `vercel.json` covers Vercel.
 
-The early-access form keeps requests in the browser and opens a pre-filled email until a form service is connected. To send submissions to HubSpot, set `VITE_HUBSPOT_PORTAL_ID` and `VITE_HUBSPOT_FORM_GUID` at build time and update the privacy notice first.
+The home page has a pilot-request form (`#pilot`, with company size, organisation type and use case) and a contact form (`#contact`, with a topic). Until a form service is connected they keep requests in the browser and open a pre-filled email. To send submissions to HubSpot, set `VITE_HUBSPOT_PORTAL_ID`, `VITE_HUBSPOT_FORM_GUID` and `VITE_HUBSPOT_CONTACT_FORM_GUID` at build time (see `.env.example` and `docs/crm-plan.md`) and update the privacy notice first.
+
+The proposed AWS architecture — stages, services and the role of each, shown on the home page under `#technology` — is documented in `docs/architecture.md`.
